@@ -11,6 +11,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PAT
 
 
 include(KDEInstallDirs)
+include(ECMSetupVersion)
 
 
 if( UNIX AND NOT APPLE )
@@ -22,6 +23,22 @@ if( UNIX AND NOT APPLE )
         install(FILES ${file} DESTINATION ${KDE_INSTALL_DATADIR}/icons/hicolor/${size}/apps RENAME ${outName})
     ENDFOREACH(file)
     ENDFOREACH(size)
+
+    configure_package_config_file(
+            "${CMAKE_CURRENT_SOURCE_DIR}/ownCloudShellResourcesConfig.cmake.in"
+            "${CMAKE_CURRENT_BINARY_DIR}/ownCloudShellResourcesConfig.cmake"
+            INSTALL_DESTINATION "${KDE_INSTALL_CMAKEPACKAGEDIR}/ownCloudShellResources"
+    )
+
+    ecm_setup_version(PROJECT
+            VARIABLE_PREFIX OWNCLOUD_SHEEL_RESORUCES
+            PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/ownCloudShellResourcesConfigVersion.cmake")
+    install(FILES
+            "${CMAKE_CURRENT_BINARY_DIR}/ownCloudShellResourcesConfig.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/ownCloudShellResourcesConfigVersion.cmake"
+            DESTINATION "${KDE_INSTALL_CMAKEPACKAGEDIR}/ownCloudShellResources"
+            COMPONENT Devel
+    )
 endif()
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
