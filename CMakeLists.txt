@@ -10,7 +10,7 @@ set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Mod
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
 
-include(KDEInstallDirs)
+include(GNUInstallDirs)
 include(ECMSetupVersion)
 
 
@@ -20,14 +20,14 @@ if( UNIX AND NOT APPLE )
     FOREACH( file ${files} )
         file(RELATIVE_PATH outName "${CMAKE_CURRENT_SOURCE_DIR}/${size}" "${file}")
         STRING(REPLACE "oC" "ownCloud" outName ${outName})
-        install(FILES ${file} DESTINATION ${KDE_INSTALL_DATADIR}/icons/hicolor/${size}/apps RENAME ${outName})
+        install(FILES ${file} DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/${size}/apps RENAME ${outName})
     ENDFOREACH(file)
     ENDFOREACH(size)
 
     configure_package_config_file(
             "${CMAKE_CURRENT_SOURCE_DIR}/ownCloudShellResourcesConfig.cmake.in"
             "${CMAKE_CURRENT_BINARY_DIR}/ownCloudShellResourcesConfig.cmake"
-            INSTALL_DESTINATION "${KDE_INSTALL_CMAKEPACKAGEDIR}/ownCloudShellResources"
+            INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/ownCloudShellResources"
     )
 
     ecm_setup_version(PROJECT
@@ -36,7 +36,7 @@ if( UNIX AND NOT APPLE )
     install(FILES
             "${CMAKE_CURRENT_BINARY_DIR}/ownCloudShellResourcesConfig.cmake"
             "${CMAKE_CURRENT_BINARY_DIR}/ownCloudShellResourcesConfigVersion.cmake"
-            DESTINATION "${KDE_INSTALL_CMAKEPACKAGEDIR}/ownCloudShellResources"
+            DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/ownCloudShellResources"
             COMPONENT Devel
     )
 endif()
