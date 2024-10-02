@@ -5,7 +5,8 @@ project(client-desktop-shell-integration-resources VERSION 1.0.0)
 include(FeatureSummary)
 feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
-find_package(ECM 6.0.0 REQUIRED NO_MODULE)
+# debian 10 ships 5.54.0
+find_package(ECM 5.54.0 REQUIRED NO_MODULE)
 set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://projects.kde.org/projects/kdesupport/extra-cmake-modules")
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
