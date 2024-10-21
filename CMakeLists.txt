@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.18)
 
 # we need at least one language for GNUInstallDirs
-project(client-desktop-shell-integration-resources VERSION 1.0.0 LANGUAGES C)
+project(client-desktop-shell-integration-resources VERSION 1.1.0 LANGUAGES C)
 
 include(FeatureSummary)
 feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
